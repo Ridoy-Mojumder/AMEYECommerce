@@ -18,11 +18,11 @@ const CategoryCard: React.FC<ICategoryCardProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[#F5F5F4] rounded-lg shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center justify-center mx-auto cursor-pointer ${className}`}
+      className={`bg-[#F5F5F4] rounded-lg shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center justify-center mx-auto cursor-pointer w-full md:w-[195px] h-[250px] ${className}`}
       onClick={onClick}
     >
       {/* Image Container */}
-      <div className="w-40 h-44 flex justify-center items-center">
+      <div className="w-full md:w-40 h-44 flex justify-center items-center">
         <Image
           src={imageUrl}
           alt={title}

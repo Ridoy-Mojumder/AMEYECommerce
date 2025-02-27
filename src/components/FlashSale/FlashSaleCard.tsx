@@ -31,7 +31,7 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
   return (
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-wrap gap-6 items-center border">
       {/* Product Image */}
-      <div className="relative w-52 h-72 flex justify-center items-center bg-[#F5F5F4]">
+      <div className="relative w-full md:w-52 h-72 flex justify-center items-center bg-[#F5F5F4]">
         <Image
           src={imageUrl}
           alt={title}

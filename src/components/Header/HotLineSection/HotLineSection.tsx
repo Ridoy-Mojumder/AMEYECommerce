@@ -10,7 +10,7 @@ const HotLineSection = () => {
         alt="Hotline Icon"
         width={48}
         height={53}
-        className="object-contain"
+        className="object-cover"
       />
 
       {/* Hotline Text */}

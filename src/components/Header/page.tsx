@@ -6,7 +6,7 @@ import IconSection from "./IconSection/IconSection";
 
 const Navbar = () => {
   return (
-    <div className="container mx-auto px-4 py-8 flex flex-wrap gap-6 md:gap-10 lg:gap-16">
+    <div className="container mx-auto px-4 py-5 flex flex-wrap gap-6 md:gap-10 lg:gap-16">
       {/* Logo Section */}
       <div className="h-8 w-28 md:h-12 md:w-44 ">
         <Image

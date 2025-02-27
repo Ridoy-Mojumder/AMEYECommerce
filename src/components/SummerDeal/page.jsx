@@ -4,9 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 const SummerDeal = () => {
-  // Set the target date for the deal countdown
   const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 13); // 13 days from now
+  targetDate.setDate(targetDate.getDate() + 13); 
   targetDate.setHours(targetDate.getHours() + 15);
   targetDate.setMinutes(targetDate.getMinutes() + 26);
   targetDate.setSeconds(targetDate.getSeconds() + 19);
@@ -35,7 +34,7 @@ const SummerDeal = () => {
   return (
     <div className="bg-[#ECFEFF] h-[280px] md:h-[320px] lg:h-[400px] xl:h-[469px] container mx-auto flex justify-center items-center relative p-6">
       <div className="border-2 border-gray-300 w-full max-w-5xl p-6 md:p-10 flex  items-center text-center relative">
-        <div className="flex flex-col justify-start items-center text-start border w-1/2">
+        <div className="flex flex-col justify-start items-center text-start  ">
           {/* Sale Text */}
           <h2 className="text-primary text-xl md:text-md font-semibold tracking-wide">
             SUMMER DEAL 20% OFF
@@ -47,30 +46,30 @@ const SummerDeal = () => {
           </h1>
 
           {/* Countdown Timer */}
-          <div className="flex items-center gap-6 mt-4">
-            <div className="text-center">
-              <p className="text-xl md:text-2xl font-bold text-gray-800">
+          <div className="flex items-center gap-1 md:gap-6 mt-4">
+            <div className="text-center bg-white px-2 rounded-lg">
+              <p className="text-xl md:text-2xl font-bold text-gray-800 ">
                 {timeLeft.days}
               </p>
-              <p className="text-sm text-gray-500">Days</p>
+              <p className="text-lg text-gray-500">Days</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white px-2 rounded-lg">
               <p className="text-xl md:text-2xl font-bold text-gray-800">
                 {timeLeft.hours}
               </p>
-              <p className="text-sm text-gray-500">Hrs</p>
+              <p className="text-lg text-gray-500">Hrs</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white px-2 rounded-lg">
               <p className="text-xl md:text-2xl font-bold text-gray-800">
                 {timeLeft.minutes}
               </p>
               <p className="text-sm text-gray-500">Mins</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white px-2 rounded-lg">
               <p className="text-xl md:text-2xl font-bold text-gray-800">
                 {timeLeft.seconds}
               </p>
-              <p className="text-sm text-gray-500">Secs</p>
+              <p className="text-lg text-gray-500">Secs</p>
             </div>
           </div>
 
@@ -79,16 +78,16 @@ const SummerDeal = () => {
             Explore Now
           </Button>
         </div>
+        </div>
         {/* Right-Side Image */}
-        <div className="absolute right-0 bottom-0 hidden md:block w-1/2 border">
+        <div className="absolute right-20 bottom-0 hidden md:block  ">
           <Image
             src="/SummerDeal/pixlr-bg-result (1) 1.png"
             alt="Summer Sale"
-            width={350}
+            width={550}
             height={350}
             className="object-contain h-full w-full"
           />
-        </div>
       </div>
     </div>
   );
