@@ -1,11 +1,18 @@
 import Banner from "@/components/Banner/Page";
+import BestSelling from "@/components/BestSelling/Page";
+import BigSale from "@/components/BigSale/page";
 import BrowseByCategory from "@/components/BrowseByCategory/page";
+import FeaturedProductsSection from "@/components/FeaturedProducts/page";
 import FlashSale from "@/components/FlashSale/page";
 import Navbar from "@/components/Header/page";
 import ShopByCategory from "@/components/Header/ShopByCategory/ShopByCategory";
 import JustAdded from "@/components/JustAdded/page";
+import KidsCollection from "@/components/KidsCollection/page";
+import MansCollection from "@/components/MenCollection/page";
+import NewProducts from "@/components/NewProducts/page";
 import SummerDeal from "@/components/SummerDeal/page";
 import TodayDeals from "@/components/TodayDeals/Page";
+import WomansCollection from "@/components/WomansCollection/page";
 
 export default function Home() {
   return (
@@ -33,7 +40,28 @@ export default function Home() {
         <TodayDeals />
       </div>
       <div>
-        <JustAdded/>
+        <JustAdded />
+      </div>
+      <div>
+        <BigSale />
+      </div>
+      <div>
+        <FeaturedProductsSection />
+      </div>
+      <div>
+        <NewProducts />
+      </div>
+      <div>
+        <BestSelling />
+      </div>
+      <div>
+        <MansCollection />
+      </div>
+      <div>
+        <WomansCollection />
+      </div>
+      <div>
+        <KidsCollection />
       </div>
     </div>
   );

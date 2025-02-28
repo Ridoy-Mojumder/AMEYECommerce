@@ -3,7 +3,7 @@ import Card from "../Card/page";
 
 const Cards = () => {
   return (
-    <div className="container px-4 -mt-10 pb-10 flex flex-wrap justify-between items-center gap-4 mx-auto">
+    <div className="container px-4 #-mt-10 pb-10 flex flex-wrap justify-between items-center gap-4 mx-auto">
       <Card
         title="Levi’s Special"
         subtitle="25% OFF"

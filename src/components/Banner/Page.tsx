@@ -1,12 +1,12 @@
 import React from "react";
 import BannerContent from "./BannerContent";
-import Cards from "./Cards";
+// import Cards from "./Cards";
 
 const Banner = () => {
   return (
     <div className="">
         <BannerContent />
-        <Cards />
+        {/* <Cards /> */}
     </div>
   );
 };
