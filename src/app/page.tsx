@@ -10,8 +10,10 @@ import JustAdded from "@/components/JustAdded/page";
 import KidsCollection from "@/components/KidsCollection/page";
 import MansCollection from "@/components/MenCollection/page";
 import NewProducts from "@/components/NewProducts/page";
+import PopularBrand from "@/components/PopularBrand/page";
 import SummerDeal from "@/components/SummerDeal/page";
 import TodayDeals from "@/components/TodayDeals/Page";
+import WinterOutfitSection from "@/components/WinterOutfitSection/page";
 import WomansCollection from "@/components/WomansCollection/page";
 
 export default function Home() {
@@ -55,6 +57,9 @@ export default function Home() {
         <BestSelling />
       </div>
       <div>
+        <WinterOutfitSection />
+      </div>
+      <div>
         <MansCollection />
       </div>
       <div>
@@ -62,6 +67,9 @@ export default function Home() {
       </div>
       <div>
         <KidsCollection />
+      </div>
+      <div>
+        <PopularBrand />
       </div>
     </div>
   );

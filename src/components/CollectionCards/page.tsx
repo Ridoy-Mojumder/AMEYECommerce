@@ -60,7 +60,7 @@ const CollectionCards: React.FC<ICollectionCardsProps> = ({ title, products }) =
       <hr className="border-gray-300 mb-6" />
 
       {/* Product Cards Slider */}
-      <Slider ref={sliderRef} {...settings} className="py-6">
+      <Slider ref={sliderRef} {...settings} className="py-4">
         {products.map((product, index) => (
           <div key={index} className="px-2">
             <ProductCard {...product} />
