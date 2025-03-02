@@ -5,7 +5,7 @@ import OfferCollectionContent from "./OfferCollectionContent";
 
 const BannerContent = () => {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <Image
@@ -17,10 +17,14 @@ const BannerContent = () => {
       </div>
 
       {/* Content Wrapper */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
-          <WinterCollectionContent />
-          <OfferCollectionContent />
+      <div className="w-full px-8 py-16">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 w-full">
+          <div className="w-full lg:w-[65%]">
+            <WinterCollectionContent />
+          </div>
+          <div className="w-full lg:w-[25%]">
+            <OfferCollectionContent />
+          </div>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import BigSale from "@/components/BigSale/page";
 import BrowseByCategory from "@/components/BrowseByCategory/page";
 import FeaturedProductsSection from "@/components/FeaturedProducts/page";
 import FlashSale from "@/components/FlashSale/page";
+import FooterSection from "@/components/Footer/page";
 import Navbar from "@/components/Header/page";
 import ShopByCategory from "@/components/Header/ShopByCategory/ShopByCategory";
 import JustAdded from "@/components/JustAdded/page";
@@ -70,6 +71,9 @@ export default function Home() {
       </div>
       <div>
         <PopularBrand />
+      </div>
+      <div>
+        <FooterSection />
       </div>
     </div>
   );

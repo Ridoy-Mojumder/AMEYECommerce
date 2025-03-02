@@ -1,21 +1,48 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import FlashSaleCard from "./FlashSaleCard";
 import { Button } from "../ui/button";
 
 const FlashSale = () => {
+  const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 103); 
+    targetDate.setHours(targetDate.getHours() + 22);
+    targetDate.setMinutes(targetDate.getMinutes() + 56);
+    targetDate.setSeconds(targetDate.getSeconds() + 19);
+  
+    const calculateTimeLeft = () => {
+      const difference = targetDate.getTime() - new Date().getTime();
+      if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    };
+  
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setTimeLeft(calculateTimeLeft());
+      }, 1000);
+      return () => clearInterval(timer);
+    }, []);
   return (
     <div className=" container mx-auto px-4 py-8  ">
       <div className="flex flex-wrap items-center justify-between gap-2 py-4">
         <div className="flex flex-wrap justify-between items-center gap-2 md:gap-5 lg:gap-10">
           <h1 className="text-3xl">Flash Sale</h1>
           <div className="flex justify-between items-center gap-2">
-            <Button color="primary">103</Button>
+            <Button color="primary">{timeLeft.days}</Button>
             <h1>:</h1>
-            <Button color="primary">22</Button>
+            <Button color="primary">{timeLeft.hours}</Button>
             <h1>:</h1>
-            <Button color="primary">56</Button>
+            <Button color="primary">{timeLeft.minutes}</Button>
             <h1>:</h1>
-            <Button color="primary">19</Button>
+            <Button color="primary">{timeLeft.seconds}</Button>
           </div>
         </div>
         <div className="flex gap-1">

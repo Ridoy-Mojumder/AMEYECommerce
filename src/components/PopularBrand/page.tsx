@@ -1,6 +1,7 @@
 import React from "react";
 import PopularBrandCard from "./PopularBrandCard/PopularBrandCard";
 import { Button } from "../ui/button";
+import FeatureSection from "./FeatureSection/page";
 
 const PopularBrand = () => {
   return (
@@ -19,7 +20,7 @@ const PopularBrand = () => {
         </div>
       </div>
       <hr className="border-gray-300 mb-6" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-4 my-4 md:my-8">
         <PopularBrandCard
           imageUrl="/PopularBrand/pngwing 13 (1).png"
           rating={3}
@@ -51,6 +52,8 @@ const PopularBrand = () => {
           title="Puma Brand"
         />
       </div>
+      <hr className="border-gray-300" />
+      <FeatureSection />
     </div>
   );
 };

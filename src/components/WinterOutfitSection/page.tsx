@@ -11,7 +11,7 @@ const WinterOutfitSection = () => {
           <h2 className="text-2xl md:text-3xl font-semibold mt-2">
             Choose Your Favourite Winter Best Outfit
           </h2>
-          <div className="flex justify-center items-center">
+          <div className="">
             <a
               href="#"
               className="mt-3 text-gray-600 hover:underline font-medium text-sm flex items-center gap-1"

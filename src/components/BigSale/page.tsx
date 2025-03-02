@@ -17,15 +17,15 @@ const BigSale = () => {
             className="w-full h-auto object-cover rounded-lg"
           />
           {/* Overlay Content */}
-          <div className="absolute top-6 md:top-8 left-6 md:left-8 z-10 w-1/2">
-            <p className="text-primary mb-2">Big Sale</p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">
+          <div className="absolute top-6 md:top-8 left-6 md:left-8 z-10 sm:w-1/2 flex flex-col items-start justify-start">
+            <p className="text-primary ">Big Sale</p>
+            <h1 className="text-lg md:text-3xl lg:text-5xl  font-extrabold ">
               Choose Your Favourite Watch
             </h1>
             <p className="mt-1 sm:mt-2 text-base sm:text-lg mb-8">
               The most biggest sale event in this year you dont want to miss.
             </p>
-            <Button className="bg-transparent text-black rounded-none hover:bg-transparent border-0 px-4 py-2 sm:px-6 sm:py-2">
+            <Button className="bg-transparent text-black rounded-none hover:bg-transparent border-0 ">
               <div className="flex flex-col gap-2">
                 <div className="flex justify-center items-center gap-2">
                 Explore Now <ArrowRight size={32} className="w-12 h-12" />
