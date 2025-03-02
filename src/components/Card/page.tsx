@@ -35,7 +35,7 @@ const Card: React.FC<ICardProps> = ({
           height={250}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/10 text-center p-4">
+        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/20 text-center p-4">
           <h1 className={`text-xl sm:text-2xl font-semibold ${titleClassName}`}>
             {title}
           </h1>
