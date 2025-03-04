@@ -1,11 +1,8 @@
-import React from "react";
 import Link from "next/link";
-import ProductHeroLider from "./ProductHeroLider";
 
 const ProductListPage = () => {
   return (
     <div>
-      <ProductHeroLider />
       <div className="flex items-center gap-4">
         List of product:
         <Link href={"/products/1"}>1</Link>
