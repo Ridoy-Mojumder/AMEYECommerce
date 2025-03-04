@@ -57,7 +57,7 @@ export function NavigationMenuDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <NavigationMenu className="w-full ">
+    <NavigationMenu className="w-full font-normal">
       {/* Mobile Menu */}
       <div className="md:hidden flex items-center">
         <button onClick={() => setIsOpen(true)} className="p-2">
@@ -87,7 +87,7 @@ const MenuItems = () => (
     <NavigationMenuItem>
       <NavigationMenuTrigger>Home</NavigationMenuTrigger>
       <NavigationMenuContent className="w-[300px] md:w-[400px] lg:w-[500px]">
-        <ul className="grid gap-3 p-4 lg:grid-cols-[.75fr_1fr]">
+        <ul className="grid gap-3 p-4 lg:grid-cols-[.75fr_1fr] text-left">
           <ListItem href="/docs" title="Introduction">
             Re-usable components built using Radix UI and Tailwind CSS.
           </ListItem>
@@ -103,7 +103,7 @@ const MenuItems = () => (
     <NavigationMenuItem>
       <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
       <NavigationMenuContent className="w-[300px] md:w-[500px] lg:w-[600px]">
-        <ul className="grid gap-3 p-4 md:grid-cols-2">
+        <ul className="grid gap-3 p-4 md:grid-cols-2 text-left">
           {components.map((component) => (
             <ListItem
               key={component.title}
@@ -119,7 +119,7 @@ const MenuItems = () => (
     <NavigationMenuItem>
       <NavigationMenuTrigger>Pages</NavigationMenuTrigger>
       <NavigationMenuContent className="w-[300px] md:w-[500px] lg:w-[600px]">
-        <ul className="grid gap-3 p-4 md:grid-cols-2">
+        <ul className="grid gap-3 p-4 md:grid-cols-2 text-left">
           {components.map((component) => (
             <ListItem
               key={component.title}
@@ -135,7 +135,7 @@ const MenuItems = () => (
     <NavigationMenuItem>
       <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
       <NavigationMenuContent className="w-[300px] md:w-[500px] lg:w-[600px]">
-        <ul className="grid gap-3 p-4 md:grid-cols-2">
+        <ul className="grid gap-3 p-4 md:grid-cols-2 text-left">
           {components.map((component) => (
             <ListItem
               key={component.title}
@@ -178,7 +178,7 @@ const ListItem = React.forwardRef(
             )}
             {...props}
           >
-            <div className="text-sm font-medium leading-none">{title}</div>
+            <div className="text-sm font-normal leading-none">{title}</div>
             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
               {children}
             </p>

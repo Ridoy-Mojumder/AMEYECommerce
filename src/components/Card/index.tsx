@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 
 interface ICardProps {
@@ -26,7 +25,7 @@ const Card: React.FC<ICardProps> = ({
   borderClassName,
 }) => {
   return (
-    <div className={`w-full sm:w-[300px] md:w-[340px] lg:w-[370px] ${className}`}>
+    <div className={`w-full ${className}`}>
       <div className="relative w-full  overflow-hidden rounded-xl shadow-lg">
         <Image
           src={imageUrl}
@@ -35,25 +34,27 @@ const Card: React.FC<ICardProps> = ({
           height={250}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/20 text-center p-4">
-          <h1 className={`text-xl sm:text-2xl font-semibold ${titleClassName}`}>
+        <div className={`absolute inset-0  ${titleClassName}`}>
+          <h1 className={`text-md md:text-xl lg:text-2xl font-normal `}>
             {title}
           </h1>
           {subtitle && (
-            <h2 className={`text-md sm:text-lg font-medium ${subtitleClassName}`}>
+            <h2
+              className={`text-sm sm:text-lg font-normal ${subtitleClassName}`}
+            >
               {subtitle}
             </h2>
           )}
-          <Button
-            className={`bg-transparent rounded-none hover:bg-transparent border-0 ${buttonClassName}`}
+          <a
+            className={`bg-transparent rounded-none hover:bg-transparent border-0 text-sm sm:text-lg  ${buttonClassName}`}
           >
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-center items-center gap-2">
-                Buy Now <ArrowRight size={32} className="w-12 h-12" />
+            <div className="flex flex-col">
+              <div className="flex justify-start items-center ">
+                Buy Now <ArrowRight size={42} className="w-12 h-4" />
               </div>
               <div className={`w-16 h-[1px] ${borderClassName}`}></div>
             </div>
-          </Button>
+          </a>
         </div>
       </div>
     </div>

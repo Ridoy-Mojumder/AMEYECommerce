@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 
 const BigSale = () => {
@@ -17,25 +16,26 @@ const BigSale = () => {
             className="w-full h-auto object-cover rounded-lg"
           />
           {/* Overlay Content */}
-          <div className="absolute top-6 md:top-8 left-6 md:left-8 z-10 sm:w-1/2 flex flex-col items-start justify-start">
-            <p className="text-primary ">Big Sale</p>
-            <h1 className="text-lg md:text-3xl lg:text-5xl  font-extrabold ">
-              Choose Your Favourite Watch
-            </h1>
-            <p className="mt-1 sm:mt-2 text-base sm:text-lg mb-8">
-              The most biggest sale event in this year you dont want to miss.
-            </p>
-            <Button className="bg-transparent text-black rounded-none hover:bg-transparent border-0 ">
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-center items-center gap-2">
-                Explore Now <ArrowRight size={32} className="w-12 h-12" />
+          <div className="absolute inset-0 z-10 sm:w-2/3 flex flex-col items-start justify-center text-[#18181B] px-8">
+            <div className="md:px-4 md:py-5 flex flex-col justify-start items-start gap-1 md:gap-3">
+              <p className="text-primary ">Big Sale</p>
+              <h1 className="text-sm md:text-3xl lg:text-5xl  font-normal ">
+                Choose Your Favourite Watch
+              </h1>
+              <p className="text-[10px] md:text-sm  font-normal ">
+                The most biggest sale event in this year you dont want to miss.
+              </p>
+              <a className="bg-transparent text-black rounded-none hover:bg-transparent border-0">
+                <div className="flex flex-col">
+                  <div className="flex justify-start items-center text-xs sm:text-sm md:text-base">
+                    Explore Now{" "}
+                    <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 ml-2" />
+                  </div>
+                  <div className="bg-black w-12 sm:w-16 h-[1px]"></div>
                 </div>
-                <div className="bg-black w-16 h-[1px]"></div>
-              </div>
-            </Button>
+              </a>
+            </div>
           </div>
-          {/* Overlay Effect */}
-          <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
         </div>
 
         {/* Right Section - Smart Watch Promo */}
@@ -47,11 +47,12 @@ const BigSale = () => {
           </div>
 
           {/* Absolute Positioned Text */}
-          <div className="absolute top-6 left-6 md:left-10 w-full pr-8">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-700">
-              Smart Watch For Smart Person
+          <div className="absolute top-6 left-2 md:left-4 w-full ">
+            <h1 className="text-xl sm:text-2xl font-normal ">
+              Smart Watch For Smart <br />
+              Person
             </h1>
-            <p className="text-gray-600 text-sm mt-1">
+            <p className="text-[10px] md:text-sm mt-1">
               The biggest sale event of the year.
             </p>
           </div>

@@ -14,7 +14,7 @@ const PopularBrandCard: React.FC<IPopularBrandCardProps> = ({
   rating,
 }) => {
   return (
-    <div className="border rounded-lg shadow-sm hover:shadow-md transition-all p-4 flex items-center space-x-4 md:w-80 lg:w-96">
+    <div className="border rounded-lg shadow-sm hover:shadow-md transition-all p-4 flex items-center space-x-4 w-full md:w-80 lg:w-96">
       {/* Brand Logo */}
       <div className="bg-gray-100 rounded-lg p-4 flex items-center justify-center w-24 h-24">
         {imageUrl && (
@@ -30,7 +30,7 @@ const PopularBrandCard: React.FC<IPopularBrandCardProps> = ({
 
       {/* Brand Details */}
       <div className="flex flex-col">
-        <h3 className="text-lg font-light">{title}</h3>
+        <h3 className="text-lg font-normal">{title}</h3>
 
         {/* Star Rating */}
         <div className="flex items-center gap-1 mt-1">
@@ -39,7 +39,7 @@ const PopularBrandCard: React.FC<IPopularBrandCardProps> = ({
               key={i}
               size={16}
               className={
-                i < rating ? "text-yellow-500 fill-yellow-500" : "text-gray-300"
+                i < rating ? "text-[#FBBF24] fill-[#FBBF24]" : "text-gray-300"
               }
             />
           ))}
@@ -48,7 +48,7 @@ const PopularBrandCard: React.FC<IPopularBrandCardProps> = ({
         {/* Visit Store */}
         <a
           href="#"
-          className="mt-2 text-sm font-medium text-primary flex items-center gap-2 "
+          className="mt-2 text-sm font-normal text-primary flex items-center gap-2 "
         >
           Visit Store →
         </a>

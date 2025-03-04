@@ -7,7 +7,7 @@ import FlashSale from "@/components/FlashSale/page";
 import FooterSection from "@/components/Footer/page";
 import Navbar from "@/components/Header/page";
 import ShopByCategory from "@/components/Header/ShopByCategory/ShopByCategory";
-import JustAdded from "@/components/JustAdded/page";
+import JustAdded from "@/components/JustAdded";
 import KidsCollection from "@/components/KidsCollection/page";
 import MansCollection from "@/components/MenCollection/page";
 import NewProducts from "@/components/NewProducts/page";
@@ -19,62 +19,25 @@ import WomansCollection from "@/components/WomansCollection/page";
 
 export default function Home() {
   return (
-    <div className="mx-auto">
-      <div className=" top-0 left-0 right-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
-        <Navbar />
-      </div>
-
-      <div className="">
-        <ShopByCategory />
-      </div>
-      <div>
-        <Banner />
-      </div>
-      <div>
-        <BrowseByCategory />
-      </div>
-      <div>
-        <FlashSale />
-      </div>
-      <div className="py-16">
-        <SummerDeal />
-      </div>
-      <div>
-        <TodayDeals />
-      </div>
-      <div>
-        <JustAdded />
-      </div>
-      <div>
-        <BigSale />
-      </div>
-      <div>
-        <FeaturedProductsSection />
-      </div>
-      <div>
-        <NewProducts />
-      </div>
-      <div>
-        <BestSelling />
-      </div>
-      <div>
-        <WinterOutfitSection />
-      </div>
-      <div>
-        <MansCollection />
-      </div>
-      <div>
-        <WomansCollection />
-      </div>
-      <div>
-        <KidsCollection />
-      </div>
-      <div>
-        <PopularBrand />
-      </div>
-      <div>
-        <FooterSection />
-      </div>
-    </div>
+    <main className="">
+      <Navbar />
+      <ShopByCategory />
+      <Banner />
+      <BrowseByCategory />
+      <FlashSale />
+      <SummerDeal />
+      <TodayDeals />
+      <JustAdded />
+      <BigSale />
+      <FeaturedProductsSection />
+      <NewProducts />
+      <BestSelling />
+      <WinterOutfitSection />
+      <MansCollection />
+      <WomansCollection />
+      <KidsCollection />
+      <PopularBrand />
+      <FooterSection />
+    </main>
   );
 }

@@ -34,7 +34,7 @@ const FlashSale = () => {
     <div className=" container mx-auto px-4 py-8  ">
       <div className="flex flex-wrap items-center justify-between gap-2 py-4">
         <div className="flex flex-wrap justify-between items-center gap-2 md:gap-5 lg:gap-10">
-          <h1 className="text-3xl">Flash Sale</h1>
+          <h1 className="text-xl md:text-3xl font-normal">Flash Sale</h1>
           <div className="flex justify-between items-center gap-2">
             <Button color="primary">{timeLeft.days}</Button>
             <h1>:</h1>
@@ -62,7 +62,7 @@ const FlashSale = () => {
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
           reviews={3435}
-          rating={4}
+          rating={3}
           sold={7}
           stock={16}
         />
@@ -82,7 +82,7 @@ const FlashSale = () => {
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
           reviews={3435}
-          rating={4}
+          rating={2}
           sold={7}
           stock={16}
         />
@@ -92,7 +92,7 @@ const FlashSale = () => {
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
           reviews={3435}
-          rating={4}
+          rating={1}
           sold={7}
           stock={16}
         />

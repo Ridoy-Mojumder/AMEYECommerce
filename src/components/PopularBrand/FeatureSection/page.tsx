@@ -46,7 +46,7 @@ const FeatureSection = () => {
               {/* Text Content */}
               <div>
                 <h3
-                  className={`text-lg font-semibold ${
+                  className={`text-lg font-normal ${
                     feature.highlight ? "text-red-500" : "text-black"
                   }`}
                 >

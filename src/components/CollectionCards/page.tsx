@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface Product {
+  id?: number|string|null;
   imageUrl: string;
   brand: string;
   title: string;
@@ -46,7 +47,7 @@ const CollectionCards: React.FC<ICollectionCardsProps> = ({ title, products }) =
     <div className="container mx-auto px-4 py-5">
       {/* Header Section */}
       <div className="flex flex-wrap justify-between items-center gap-2 pb-4">
-        <h1 className="text-3xl font-bold">{title}</h1>
+        <h1 className="text-xl md:text-3xl font-normal">{title}</h1>
         {/* Navigation Buttons */}
         <div className="flex gap-2">
             <Button variant="outline" size="icon" onClick={() => sliderRef.current?.slickPrev()}>
@@ -61,7 +62,7 @@ const CollectionCards: React.FC<ICollectionCardsProps> = ({ title, products }) =
 
       {/* Product Cards Slider */}
       <Slider ref={sliderRef} {...settings} className="py-4">
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <div key={index} className="px-2">
             <ProductCard {...product} />
           </div>

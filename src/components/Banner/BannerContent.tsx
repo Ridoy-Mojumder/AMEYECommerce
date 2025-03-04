@@ -17,8 +17,8 @@ const BannerContent = () => {
       </div>
 
       {/* Content Wrapper */}
-      <div className="w-full px-8 py-16">
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 w-full">
+      <div className="w-full px-8 py-10 md:py-20">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-[30px] w-full">
           <div className="w-full lg:w-[65%]">
             <WinterCollectionContent />
           </div>

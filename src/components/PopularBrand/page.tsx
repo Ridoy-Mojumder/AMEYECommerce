@@ -7,7 +7,7 @@ const PopularBrand = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
       <div className="flex flex-wrap justify-between items-center gap-2 pb-4">
-        <h1 className="text-3xl font-bold">Popular Brand</h1>
+        <h1 className="text-xl md:text-3xl font-normal">Popular Brand</h1>
         {/* Navigation Buttons */}
         <div className="flex justify-center items-center">
           <Button

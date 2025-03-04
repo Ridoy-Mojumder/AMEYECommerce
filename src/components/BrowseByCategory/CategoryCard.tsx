@@ -33,7 +33,7 @@ const CategoryCard: React.FC<ICategoryCardProps> = ({
       </div>
 
       {/* Title */}
-      <h1 className={`mt-3 text-lg font-semibold text-gray-700 text-center ${titleClassName}`}>
+      <h1 className={`mt-3 text-base font-normal text-gray-700 text-center ${titleClassName}`}>
         {title}
       </h1>
     </div>

@@ -26,7 +26,7 @@ const BrowseByCategory = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Header Section */}
       <div className="flex flex-wrap justify-between items-center gap-2 pb-4">
-        <h1 className="text-3xl font-bold">Browse By Category</h1>
+        <h1 className="text-xl md:text-3xl font-normal">Browse By Category</h1>
         {/* Navigation Buttons */}
         <div className="flex gap-2">
           <Button

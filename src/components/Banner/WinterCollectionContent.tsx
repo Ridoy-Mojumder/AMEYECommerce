@@ -40,7 +40,7 @@ const WinterCollectionContent = () => {
   ];
 
   return (
-    <div className="bg-[#ECFEFF] relative lg:h-[347px] px-6">
+    <div className="bg-[#ECFEFF] relative lg:h-[324px] px-6">
       <div className="max-w-6xl mx-auto w-full">
         <Slider {...sliderSettings}>
           {slides.map((slide) => (
@@ -51,7 +51,7 @@ const WinterCollectionContent = () => {
                   <h1 className="text-3xl md:text-4xl font-light text-gray-900 leading-tight">
                     {slide.title}
                   </h1>
-                  <p className="text-gray-600 text-base md:text-sm font-extralight">
+                  <p className="text-gray-600 text-base md:text-sm font-normal">
                     {slide.description}
                   </p>
                   <div>
