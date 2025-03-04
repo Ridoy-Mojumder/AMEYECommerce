@@ -1,3 +1,4 @@
+import { getProductById } from "@/assets/product-data";
 import React from "react";
 
 interface IProductDetailsByIdProps {
@@ -6,9 +7,11 @@ interface IProductDetailsByIdProps {
 }
 
 const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
+  const productData = getProductById(Number(params?.id ?? -1));
+
   return (
     <div>
-      <h1>Product id : {params?.id}</h1>
+      <h1>Product id : {JSON.stringify(productData)}</h1>
     </div>
   );
 };

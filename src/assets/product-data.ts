@@ -86,3 +86,7 @@ export const getProducts = (props: TGetProductsProps) => {
   if (!type) return productsData;
   return productsData?.filter((product) => product.type.includes(type));
 };
+
+export const getProductById = (id: number) => {
+  return productsData.find((product) => product.id && id && product.id === id);
+};
