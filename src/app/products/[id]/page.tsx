@@ -1,5 +1,4 @@
 import { getProductById } from "@/assets/product-data";
-import React from "react";
 
 interface IProductDetailsByIdProps {
   params?: { id?: string };
