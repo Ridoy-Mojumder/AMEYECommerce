@@ -1,7 +1,7 @@
 import React from "react";
 import PopularBrandCard from "./PopularBrandCard/PopularBrandCard";
 import { Button } from "../ui/button";
-import FeatureSection from "./FeatureSection/page";
+import FeatureSection from "./FeatureSection";
 
 const PopularBrand = () => {
   return (

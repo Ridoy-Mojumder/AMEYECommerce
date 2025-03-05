@@ -1,5 +1,5 @@
 import { getProducts } from "@/assets/product-data";
-import CollectionCards from "../CollectionCards/page";
+import CollectionCards from "../CollectionCards";
 
 const TodayDeals = () => {
   const productsData = getProducts({ type: "Today's Deal" });

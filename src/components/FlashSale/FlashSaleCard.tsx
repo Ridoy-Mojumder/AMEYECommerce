@@ -28,7 +28,7 @@ interface IFlashSaleCardProps {
   brand: string;
   title: string;
   price: number;
-  reviews: number;
+  reviewsCount: number;
   rating: number;
   sold: number;
   stock: number;
@@ -40,7 +40,7 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
   brand,
   title,
   price,
-  reviews,
+  reviewsCount,
   rating,
   sold,
   stock,
@@ -140,7 +140,7 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
                 />
               ))}
             </div>
-            <p className="text-sm text-gray-600">({reviews} reviews)</p>
+            <p className="text-sm text-gray-600">({reviewsCount} reviews)</p>
           </div>
 
           {/* Color Selection */}
@@ -240,7 +240,7 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
                   }
                 />
               ))}
-              <span className="text-gray-500 text-xs">({reviews} reviews)</span>
+              <span className="text-gray-500 text-xs">({reviewsCount} reviews)</span>
             </div>
           </div>
 

@@ -1,7 +1,12 @@
+"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Header";
+import FooterSection from "@/components/Footer";
+import ShopByCategory from "@/components/Header/ShopByCategory/ShopByCategory";
+import ReduxProvider from "./ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre-baskerville", // Set a unique CSS variable
+  variable: "--font-libre-baskerville",
   subsets: ["latin"],
   weight: ["400", "700"],
   display: "swap",
@@ -35,8 +40,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} antialiased`}
       >
-        <Toaster position="top-right" reverseOrder={false} />
-        {children}
+        <ReduxProvider>
+          <Navbar />
+          <ShopByCategory />
+          <Toaster position="top-right" reverseOrder={false} />
+          {children}
+          <FooterSection />
+        </ReduxProvider>
       </body>
     </html>
   );

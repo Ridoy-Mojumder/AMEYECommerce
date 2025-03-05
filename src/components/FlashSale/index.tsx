@@ -61,7 +61,7 @@ const FlashSale = () => {
           brand="Smartwool"
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
-          reviews={3435}
+          reviewsCount={3435}
           rating={3}
           sold={7}
           stock={16}
@@ -71,7 +71,7 @@ const FlashSale = () => {
           brand="Smartwool"
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
-          reviews={3435}
+          reviewsCount={3435}
           rating={4}
           sold={7}
           stock={16}
@@ -81,7 +81,7 @@ const FlashSale = () => {
           brand="Smartwool"
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
-          reviews={3435}
+          reviewsCount={3435}
           rating={2}
           sold={7}
           stock={16}
@@ -91,7 +91,7 @@ const FlashSale = () => {
           brand="Smartwool"
           title="Smartwool Winter Cotton V Type Full Shirt"
           price={95.0}
-          reviews={3435}
+          reviewsCount={3435}
           rating={1}
           sold={7}
           stock={16}
