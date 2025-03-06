@@ -13,6 +13,19 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "@/store/features/WishlistProductCounter/WishlistProductCounterSlice";
+import {
+  toggleSelected,
+  setSelectedFalse,
+} from "@/store/features/selected/selectedSlice";
+import {
+  addToCart,
+  removeFromCart,
+} from "@/store/features/AddToCartCounter/AddToCartCounterSlice";
 
 interface IProductCardProps {
   id?: number | string | null;
@@ -45,23 +58,70 @@ const ProductCard: React.FC<IProductCardProps> = ({
   description,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const wishlistProducts = useAppSelector(
+    (state) => state.wishlistProduct.items
+  );
+  const addToCartProducts = useAppSelector((state) => state.addToCart.items);
+  const isWishlisted = wishlistProducts.some((item) => item.id === id);
+  const isAddToCart = addToCartProducts.some((item) => item.id === id);
+  const selectedItems = useAppSelector((state) => state.selected.selectedItems);
+  const isSelected = selectedItems.includes(id?.toString());
 
   const handleWishlistClick = () => {
-    setIsSelected(!isSelected);
-    if (!isSelected) {
-      toast.success(`${title} added to wishlist!`);
+    if (!id) return;
+    if (!isWishlisted) {
+      const newItem = {
+        id,
+        imageUrl,
+        brand,
+        title,
+        price,
+        originalPrice,
+        discount,
+        rating,
+        reviewsCount,
+      };
+      dispatch(addToWishlist(newItem));
+      toast.success(`${brand} added to wishlist!`);
     } else {
-      toast.error(`${title} removed from wishlist!`);
+      dispatch(removeFromWishlist(id));
+      toast.error(`${brand} removed from wishlist!`);
+    }
+    dispatch(toggleSelected(id.toString()));
+  };
+
+  const handleAddToCartClick = () => {
+    if (!id) return;
+    if (!isAddToCart) {
+      const newItem = {
+        id,
+        imageUrl,
+        brand,
+        title,
+        price,
+        originalPrice,
+        discount,
+        rating,
+        reviewsCount,
+      };
+      dispatch(addToCart(newItem));
+      toast.success(`${brand} added to Cart!`);
+    } else {
+      dispatch(removeFromCart(id));
+      toast.error(`${brand} removed from Cart!`);
     }
   };
 
-
   const handleRefresh = () => {
-    setIsSelected(false);
     setIsModalOpen(false);
     toast.success("Product refreshed!");
+    dispatch(setSelectedFalse(id.toString()));
+    dispatch(removeFromWishlist(id));
+    dispatch(removeFromCart(id));
+    // dispatch(decrement());
   };
 
   return (
@@ -99,9 +159,10 @@ const ProductCard: React.FC<IProductCardProps> = ({
         </div>
         {/* Add to Cart Button */}
         <Button
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-4 py-2 rounded-md flex items-center gap-2 transition-opacity duration-300 ${
+          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2  text-sm px-4 py-2 rounded-md flex items-center gap-2 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
-          }`}
+          } `}
+          onClick={() => handleAddToCartClick()}
         >
           <ShoppingCart size={16} /> Add to Cart
         </Button>
@@ -133,7 +194,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
             <p className="text-primary text-sm">{brand}</p>
             <div className={` ${isHovered ? "opacity-100" : "opacity-0"}`}>
               <Button
-                className={`  p-2 rounded-full shadow-md w-8 h-8  ${
+                className={`p-2 rounded-full shadow-md w-8 h-8 ${
                   isSelected
                     ? "bg-primary text-white hover:bg-primary"
                     : "bg-white text-gray-400 hover:bg-white"
@@ -144,7 +205,9 @@ const ProductCard: React.FC<IProductCardProps> = ({
               </Button>
             </div>
           </div>
-          <h3 className="text-sm font-normal">{title}</h3>
+          <Link href={`/products/${id}`}>
+            <h3 className="text-sm font-normal">{title}</h3>
+          </Link>
 
           {/* Ratings */}
           <div className="flex items-center gap-1 text-[#FBBF24] text-sm mt-1">

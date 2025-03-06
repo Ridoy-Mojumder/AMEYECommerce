@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Libre_Baskerville } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import Drawer from "@/components/Drawer/Drawer";
+import AddToCartDrawer from "@/components/Drawer/DrawerForAddToCart/DrawerForAddToCart";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,15 +36,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} antialiased relative`}
       >
         <ReduxStoreProvider>
           <Navbar />
           <ShopByCategory />
           <Toaster position="top-right" reverseOrder={false} />
+          <Drawer/>
+          <AddToCartDrawer/>
+
           {children}
           <FooterSection />
         </ReduxStoreProvider>

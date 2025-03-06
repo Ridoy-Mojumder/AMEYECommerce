@@ -22,8 +22,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/store/hooks";
+import { addToWishlist, removeFromWishlist } from "@/store/features/WishlistProductCounter/WishlistProductCounterSlice";
+import { setSelectedFalse, toggleSelected } from "@/store/features/selected/selectedSlice";
 
 interface IFlashSaleCardProps {
+  id:number;
   imageUrl: string;
   brand: string;
   title: string;
@@ -33,9 +38,12 @@ interface IFlashSaleCardProps {
   sold: number;
   stock: number;
   description?: string;
+  originalPrice?: number;
+  discount?: number;
 }
 
 const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
+  id,
   imageUrl,
   brand,
   title,
@@ -45,28 +53,59 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
   sold,
   stock,
   description,
+  originalPrice,
+  discount,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>("#F5F5F4"); 
+  const dispatch = useDispatch();
+
+
+  
+  const wishlistProducts = useAppSelector(
+    (state) => state.wishlistProduct.items
+  );
+  const isWishlisted = wishlistProducts.some((item) => item.id === id);
+  const selectedItems = useAppSelector((state) => state.selected.selectedItems);
+  const isSelected = selectedItems.includes(id?.toString()); 
+
 
   const handleWishlistClick = () => {
-    setIsSelected(!isSelected);
-    if (!isSelected) {
-      toast.success(`${brand} is add to wishlist`);
+    if (!id) return;
+    if (!isWishlisted) {
+      const newItem = {
+        id,
+        imageUrl,
+        brand,
+        title,
+        price,
+        originalPrice,
+        discount,
+        rating,
+        reviewsCount,
+      };
+      dispatch(addToWishlist(newItem));
+      toast.success(`${brand} added to wishlist!`);
     } else {
+      dispatch(removeFromWishlist(id));
       toast.error(`${brand} removed from wishlist!`);
     }
+    dispatch(toggleSelected(id.toString()));
   };
 
   const handleRefresh = () => {
-    setIsSelected(false);
     setIsModalOpen(false);
     toast.success("Product refreshed!");
-    setSelectedColor("#F5F5F4");
+    dispatch(setSelectedFalse(id.toString()));
+    dispatch(removeFromWishlist(id));
   };
+
+
+
+
+
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };

@@ -8,7 +8,7 @@ export type TProductType =
   | "Women’s Collection"
   | "Kid’s Collection";
 export interface IProduct {
-  id: number;
+  id: number ;
   imageUrl: string;
   brand: string;
   title: string;

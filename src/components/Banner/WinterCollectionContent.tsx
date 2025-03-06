@@ -69,6 +69,7 @@ const WinterCollectionContent = () => {
                     width={350}
                     height={250}
                     className="object-contain"
+                    priority
                   />
                 </div>
               </div>

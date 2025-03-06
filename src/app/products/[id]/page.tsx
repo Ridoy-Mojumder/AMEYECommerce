@@ -3,6 +3,12 @@
 import { getProductById } from "@/assets/product-data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { toggleSelected } from "@/store/features/selected/selectedSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "@/store/features/WishlistProductCounter/WishlistProductCounterSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -15,7 +21,15 @@ interface IProductDetailsByIdProps {
 const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
   const productId = params?.id ? Number(params.id) : NaN;
   const [selectedColor, setSelectedColor] = useState<string>("#F5F5F4");
-  const [isSelected, setIsSelected] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const productData = getProductById(productId);
+  const selectedItems = useAppSelector((state) => state.selected.selectedItems);
+  const wishlistProducts = useAppSelector(
+    (state) => state.wishlistProduct.items
+  );
+  const isSelected = selectedItems.includes(productId.toString());
+  const isWishlisted = wishlistProducts.some((item) => item.id === productId);
 
   if (isNaN(productId)) {
     return (
@@ -26,8 +40,6 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
       </div>
     );
   }
-
-  const productData = getProductById(productId);
 
   if (!productData) {
     return (
@@ -40,10 +52,17 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
   }
 
   const handleWishlistClick = () => {
-    setIsSelected(!isSelected);
-    toast[isSelected ? "error" : "success"](
-      `${productData.brand} ${isSelected ? "removed from" : "added to"} wishlist`
-    );
+    if (!isSelected || !isWishlisted) {
+      toast.success(`${productData.brand} added to wishlist!`);
+      // dispatch(increment());
+      dispatch(addToWishlist(productData));
+    } else {
+      toast.error(`${productData.brand} removed from wishlist!`);
+      // dispatch(decrement());
+      dispatch(removeFromWishlist(productData.id));
+    }
+
+    dispatch(toggleSelected(productData.id.toString()));
   };
 
   const handleColorChange = (color: string) => {
@@ -71,13 +90,17 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
           {/* Product Details Section */}
           <div className="flex flex-col gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{productData.title}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+                {productData.title}
+              </h1>
               <p className="text-lg text-gray-500 mt-2">{productData.brand}</p>
             </div>
 
             {/* Pricing & Discount */}
             <div className="flex items-center gap-3">
-              <p className="text-2xl md:text-3xl font-semibold text-green-600">${productData.price}</p>
+              <p className="text-2xl md:text-3xl font-semibold text-green-600">
+                ${productData.price}
+              </p>
               {productData.originalPrice && (
                 <p className="text-lg text-gray-400 line-through">
                   ${productData.originalPrice.toFixed(2)}
@@ -95,7 +118,11 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
               {["#DC2626", "#FBBF24", "#F5F5F4", "#FF9800"].map((color) => (
                 <div
                   key={color}
-                  className={`w-6 h-6 rounded-full cursor-pointer border-2 ${selectedColor === color ? "border-gray-400" : "border-transparent"}`}
+                  className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
+                    selectedColor === color
+                      ? "border-gray-400"
+                      : "border-transparent"
+                  }`}
                   style={{ backgroundColor: color }}
                   onClick={() => handleColorChange(color)}
                 ></div>
@@ -109,15 +136,23 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
                   <Star
                     key={i}
                     size={20}
-                    className={i < productData.rating ? "text-[#FBBF24] fill-[#FBBF24]" : "text-gray-300"}
+                    className={
+                      i < productData.rating
+                        ? "text-[#FBBF24] fill-[#FBBF24]"
+                        : "text-gray-300"
+                    }
                   />
                 ))}
               </div>
-              <p className="text-sm text-gray-600">({productData.reviewsCount} reviews)</p>
+              <p className="text-sm text-gray-600">
+                ({productData.reviewsCount} reviews)
+              </p>
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-sm leading-relaxed">{productData.description}</p>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {productData.description}
+            </p>
 
             {/* Product Badges */}
             <div className="flex flex-wrap gap-2">
