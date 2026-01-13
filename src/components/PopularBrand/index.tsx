@@ -3,6 +3,8 @@ import PopularBrandCard from "./PopularBrandCard/PopularBrandCard";
 import { Button } from "../ui/button";
 import FeatureSection from "./FeatureSection";
 
+import Link from "next/link";
+
 const PopularBrand = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
@@ -10,13 +12,15 @@ const PopularBrand = () => {
         <h1 className="text-xl md:text-3xl font-normal">Popular Brand</h1>
         {/* Navigation Buttons */}
         <div className="flex justify-center items-center">
-          <Button
-            variant="outline"
-            size="icon"
-            className="w-full  rounded-[3px] p-4"
-          >
-            View All
-          </Button>
+          <Link href="/allSellers">
+            <Button
+              variant="outline"
+              size="icon"
+              className="w-full  rounded-[3px] p-4"
+            >
+              View All
+            </Button>
+          </Link>
         </div>
       </div>
       <hr className="border-gray-300 mb-6" />

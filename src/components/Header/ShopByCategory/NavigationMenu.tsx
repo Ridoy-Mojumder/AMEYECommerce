@@ -149,18 +149,18 @@ const MenuItems = () => (
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <Link href="/allSellers" legacyBehavior passHref>
-        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+      <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+        <Link href="/allSellers">
           All Sellers
-        </NavigationMenuLink>
-      </Link>
+        </Link>
+      </NavigationMenuLink>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <Link href="/flashSale" legacyBehavior passHref>
-        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+      <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+        <Link href="/flashSale">
           Flash Sale
-        </NavigationMenuLink>
-      </Link>
+        </Link>
+      </NavigationMenuLink>
     </NavigationMenuItem>
   </>
 );

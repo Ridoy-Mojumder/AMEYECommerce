@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import FlashSaleCard from "./FlashSaleCard";
+import Link from "next/link";
 import { Button } from "../ui/button";
 
 const FlashSale = () => {
@@ -49,12 +50,14 @@ const FlashSale = () => {
           </div>
         </div>
         <div className="flex gap-1">
-          <Button
-            variant="outline"
-            className="bg-transparent rounded-none text-[#18181B] border-[#18181B]"
-          >
-            View more
-          </Button>
+          <Link href="/flashSale">
+            <Button
+              variant="outline"
+              className="bg-transparent rounded-none text-[#18181B] border-[#18181B]"
+            >
+              View more
+            </Button>
+          </Link>
         </div>
       </div>
       <hr className=" py-5" />

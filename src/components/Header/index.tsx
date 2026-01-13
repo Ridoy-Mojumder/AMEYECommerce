@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import React from "react";
 import InputWithButton from "../Input/InputWithButton";
 import HotLineSection from "./HotLineSection/HotLineSection";
 import IconSection from "./IconSection/IconSection";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[auto_1fr_auto_auto] items-center gap-4 sm:gap-6 md:gap-10 lg:gap-16">
           {/* Logo Section */}
           <div className="h-8 w-28 md:h-12 md:w-44">
-            <a href="">
+            <Link href="/">
               <Image
                 src="/navbar/Logo 1 1.png"
                 alt="Logo"
@@ -20,7 +20,7 @@ const Navbar = () => {
                 width={176}
                 className="w-full h-full object-container"
               />
-            </a>
+            </Link>
           </div>
 
           {/* Search Bar - Takes full width on small screens */}
