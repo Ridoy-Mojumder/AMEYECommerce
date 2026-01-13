@@ -4,13 +4,16 @@ import FlashSaleCard from "./FlashSaleCard";
 import { Button } from "../ui/button";
 
 const FlashSale = () => {
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 103);
-  targetDate.setHours(targetDate.getHours() + 22);
-  targetDate.setMinutes(targetDate.getMinutes() + 56);
-  targetDate.setSeconds(targetDate.getSeconds() + 19);
+  const [targetDate] = useState(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 103);
+    date.setHours(date.getHours() + 22);
+    date.setMinutes(date.getMinutes() + 56);
+    date.setSeconds(date.getSeconds() + 19);
+    return date;
+  });
 
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = React.useCallback(() => {
     const difference = targetDate.getTime() - new Date().getTime();
     if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
@@ -20,7 +23,7 @@ const FlashSale = () => {
       minutes: Math.floor((difference / (1000 * 60)) % 60),
       seconds: Math.floor((difference / 1000) % 60),
     };
-  };
+  }, [targetDate]);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -29,7 +32,7 @@ const FlashSale = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [calculateTimeLeft]);
   return (
     <div className=" container mx-auto px-4 py-8  ">
       <div className="flex flex-wrap items-center justify-between gap-2 py-4">

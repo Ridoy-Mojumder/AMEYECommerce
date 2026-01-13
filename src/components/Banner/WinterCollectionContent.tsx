@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 const WinterCollectionContent = () => {
   const sliderSettings = {
     dots: true,
+    dotsClass: "slick-dots !bottom-[0px] !left-[0px]",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -15,6 +16,11 @@ const WinterCollectionContent = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+    customPaging: () => {
+      return (
+        <div className="w-6 h-[2px] rounded-full bg-gray-400 "></div>
+      );
+    }
   };
 
   const slides = [

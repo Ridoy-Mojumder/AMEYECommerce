@@ -68,13 +68,14 @@ const ProductCard: React.FC<IProductCardProps> = ({
   const isWishlisted = wishlistProducts.some((item) => item.id === id);
   const isAddToCart = addToCartProducts.some((item) => item.id === id);
   const selectedItems = useAppSelector((state) => state.selected.selectedItems);
-  const isSelected = selectedItems.includes(id?.toString());
+  const isSelected = selectedItems.includes(id?.toString() ?? "");
 
   const handleWishlistClick = () => {
     if (!id) return;
+    const numericId = Number(id);
     if (!isWishlisted) {
       const newItem = {
-        id,
+        id: numericId,
         imageUrl,
         brand,
         title,
@@ -83,11 +84,14 @@ const ProductCard: React.FC<IProductCardProps> = ({
         discount,
         rating,
         reviewsCount,
+        description: description || "",
+        type: [],
       };
+
       dispatch(addToWishlist(newItem));
       toast.success(`${brand} added to wishlist!`);
     } else {
-      dispatch(removeFromWishlist(id));
+      dispatch(removeFromWishlist(numericId));
       toast.error(`${brand} removed from wishlist!`);
     }
     dispatch(toggleSelected(id.toString()));
@@ -95,9 +99,10 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
   const handleAddToCartClick = () => {
     if (!id) return;
+    const numericId = Number(id);
     if (!isAddToCart) {
       const newItem = {
-        id,
+        id: numericId,
         imageUrl,
         brand,
         title,
@@ -106,21 +111,26 @@ const ProductCard: React.FC<IProductCardProps> = ({
         discount,
         rating,
         reviewsCount,
+        description: description || "",
+        type: [],
       };
+
       dispatch(addToCart(newItem));
       toast.success(`${brand} added to Cart!`);
     } else {
-      dispatch(removeFromCart(id));
+      dispatch(removeFromCart(numericId));
       toast.error(`${brand} removed from Cart!`);
     }
   };
 
   const handleRefresh = () => {
+    if (!id) return;
+    const numericId = Number(id);
     setIsModalOpen(false);
     toast.success("Product refreshed!");
     dispatch(setSelectedFalse(id.toString()));
-    dispatch(removeFromWishlist(id));
-    dispatch(removeFromCart(id));
+    dispatch(removeFromWishlist(numericId));
+    dispatch(removeFromCart(numericId));
     // dispatch(decrement());
   };
 
@@ -159,18 +169,16 @@ const ProductCard: React.FC<IProductCardProps> = ({
         </div>
         {/* Add to Cart Button */}
         <Button
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2  text-sm px-4 py-2 rounded-md flex items-center gap-2 transition-opacity duration-300 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          } `}
+          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2  text-sm px-4 py-2 rounded-md flex items-center gap-2 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+            } `}
           onClick={() => handleAddToCartClick()}
         >
           <ShoppingCart size={16} /> Add to Cart
         </Button>
 
         <div
-          className={`absolute text-white text-xs px-2 py-1 rounded-sm top-6 right-6 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute text-white text-xs px-2 py-1 rounded-sm top-6 right-6 ${isHovered ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div className="flex flex-col gap-1">
             <Button
@@ -194,11 +202,10 @@ const ProductCard: React.FC<IProductCardProps> = ({
             <p className="text-primary text-sm">{brand}</p>
             <div className={` ${isHovered ? "opacity-100" : "opacity-0"}`}>
               <Button
-                className={`p-2 rounded-full shadow-md w-8 h-8 ${
-                  isSelected
-                    ? "bg-primary text-white hover:bg-primary"
-                    : "bg-white text-gray-400 hover:bg-white"
-                }`}
+                className={`p-2 rounded-full shadow-md w-8 h-8 ${isSelected
+                  ? "bg-primary text-white hover:bg-primary"
+                  : "bg-white text-gray-400 hover:bg-white"
+                  }`}
                 onClick={handleWishlistClick}
               >
                 <Heart size={20} />

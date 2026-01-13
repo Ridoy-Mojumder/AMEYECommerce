@@ -3,6 +3,7 @@
 import { getProductById } from "@/assets/product-data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { addToCart, removeFromCart } from "@/store/features/AddToCartCounter/AddToCartCounterSlice";
 import { toggleSelected } from "@/store/features/selected/selectedSlice";
 import {
   addToWishlist,
@@ -11,15 +12,16 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, use } from "react";
 import toast from "react-hot-toast";
 
 interface IProductDetailsByIdProps {
-  params?: { id?: string };
+  params: Promise<{ id: string }>;
 }
 
 const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
-  const productId = params?.id ? Number(params.id) : NaN;
+  const { id } = use(params);
+  const productId = id ? Number(id) : NaN;
   const [selectedColor, setSelectedColor] = useState<string>("#F5F5F4");
   const dispatch = useAppDispatch();
 
@@ -28,8 +30,10 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
   const wishlistProducts = useAppSelector(
     (state) => state.wishlistProduct.items
   );
+  const addToCartProducts = useAppSelector((state) => state.addToCart.items);
   const isSelected = selectedItems.includes(productId.toString());
   const isWishlisted = wishlistProducts.some((item) => item.id === productId);
+  const isAddToCart = addToCartProducts.some((item) => item.id === productId);
 
   if (isNaN(productId)) {
     return (
@@ -63,6 +67,17 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
     }
 
     dispatch(toggleSelected(productData.id.toString()));
+  };
+
+  const handleAddToCartClick = () => {
+    if (!productData.id) return;
+    if (!isAddToCart) {
+      dispatch(addToCart(productData));
+      toast.success(`${productData.brand} added to Cart!`);
+    } else {
+      dispatch(removeFromCart(productData.id));
+      toast.error(`${productData.brand} removed from Cart!`);
+    }
   };
 
   const handleColorChange = (color: string) => {
@@ -118,11 +133,10 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
               {["#DC2626", "#FBBF24", "#F5F5F4", "#FF9800"].map((color) => (
                 <div
                   key={color}
-                  className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
-                    selectedColor === color
+                  className={`w-6 h-6 rounded-full cursor-pointer border-2 ${selectedColor === color
                       ? "border-gray-400"
                       : "border-transparent"
-                  }`}
+                    }`}
                   style={{ backgroundColor: color }}
                   onClick={() => handleColorChange(color)}
                 ></div>
@@ -170,15 +184,14 @@ const ProductDetailsById = ({ params }: IProductDetailsByIdProps) => {
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 mt-3">
-              <Button className="bg-black text-white text-sm px-5 py-2 rounded-md font-medium hover:bg-gray-800 transition flex items-center gap-2">
+              <Button className="bg-black text-white text-sm px-5 py-2 rounded-md font-medium hover:bg-gray-800 transition flex items-center gap-2" onClick={handleAddToCartClick}>
                 <ShoppingCart size={16} /> Add to Cart
               </Button>
               <Button
-                className={`text-sm px-5 py-2 rounded-md font-medium transition flex items-center gap-2 ${
-                  isSelected
+                className={`text-sm px-5 py-2 rounded-md font-medium transition flex items-center gap-2 ${isSelected
                     ? "bg-green-500 text-white hover:bg-green-600"
                     : "border border-gray-300 text-white hover:text-gray-700 hover:bg-gray-100"
-                }`}
+                  }`}
                 onClick={handleWishlistClick}
               >
                 {isSelected ? "Wishlisted" : "Add to Wishlist"}

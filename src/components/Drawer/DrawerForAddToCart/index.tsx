@@ -24,6 +24,7 @@ export function AddToCart() {
   const handleRemoveItemFromAddToCart = (id: number) => {
     dispatch(removeFromCart(id));
   };
+  
 
   return (
     <Drawer>

@@ -24,11 +24,21 @@ import {
 } from "../ui/dialog";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { addToWishlist, removeFromWishlist } from "@/store/features/WishlistProductCounter/WishlistProductCounterSlice";
-import { setSelectedFalse, toggleSelected } from "@/store/features/selected/selectedSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "@/store/features/WishlistProductCounter/WishlistProductCounterSlice";
+import {
+  setSelectedFalse,
+  toggleSelected,
+} from "@/store/features/selected/selectedSlice";
+import {
+  addToCart,
+  removeFromCart,
+} from "@/store/features/AddToCartCounter/AddToCartCounterSlice";
 
 interface IFlashSaleCardProps {
-  id:number;
+  id: number;
   imageUrl: string;
   brand: string;
   title: string;
@@ -59,18 +69,17 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedColor, setSelectedColor] = useState<string>("#F5F5F4"); 
+  const [selectedColor, setSelectedColor] = useState<string>("#F5F5F4");
   const dispatch = useDispatch();
 
-
-  
   const wishlistProducts = useAppSelector(
     (state) => state.wishlistProduct.items
   );
+  const addToCartProducts = useAppSelector((state) => state.addToCart.items);
   const isWishlisted = wishlistProducts.some((item) => item.id === id);
+  const isAddToCart = addToCartProducts.some((item) => item.id === id);
   const selectedItems = useAppSelector((state) => state.selected.selectedItems);
-  const isSelected = selectedItems.includes(id?.toString()); 
-
+  const isSelected = selectedItems.includes(id?.toString());
 
   const handleWishlistClick = () => {
     if (!id) return;
@@ -85,7 +94,10 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
         discount,
         rating,
         reviewsCount,
+        description: description || "",
+        type: [],
       };
+
       dispatch(addToWishlist(newItem));
       toast.success(`${brand} added to wishlist!`);
     } else {
@@ -95,16 +107,36 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
     dispatch(toggleSelected(id.toString()));
   };
 
+  const handleAddToCartClick = () => {
+    if (!id) return;
+    if (!isAddToCart) {
+      const newItem = {
+        id,
+        imageUrl,
+        brand,
+        title,
+        price,
+        originalPrice,
+        discount,
+        rating,
+        reviewsCount,
+        description: description || "",
+        type: [],
+      };
+      dispatch(addToCart(newItem));
+      toast.success(`${brand} added to Cart!`);
+    } else {
+      dispatch(removeFromCart(id));
+      toast.error(`${brand} removed from Cart!`);
+    }
+  };
+
   const handleRefresh = () => {
     setIsModalOpen(false);
     toast.success("Product refreshed!");
     dispatch(setSelectedFalse(id.toString()));
     dispatch(removeFromWishlist(id));
   };
-
-
-
-
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
@@ -117,7 +149,10 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Product Image */}
-        <div className="relative w-full md:w-52 h-72 flex justify-start items-center bg-[#F5F5F4]" style={{ backgroundColor: selectedColor }}>
+        <div
+          className="relative w-full md:w-52 h-72 flex justify-start items-center bg-[#F5F5F4]"
+          style={{ backgroundColor: selectedColor }}
+        >
           <Image
             src={imageUrl}
             alt={title}
@@ -127,16 +162,14 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
           />
           {/* Wishlist Button */}
           <div
-            className={`absolute top-2 right-2 grid grid-cols-1 gap-1 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute top-2 right-2 grid grid-cols-1 gap-1 ${isHovered ? "opacity-100" : "opacity-0"
+              }`}
           >
             <Button
-              className={`  p-2 rounded-full shadow-md w-8 h-8 ${
-                isSelected
-                  ? "bg-primary text-white"
-                  : "bg-white hover:bg-white text-gray-400 "
-              }`}
+              className={`  p-2 rounded-full shadow-md w-8 h-8 ${isSelected
+                ? "bg-primary text-white"
+                : "bg-white hover:bg-white text-gray-400 "
+                }`}
               onClick={handleWishlistClick}
             >
               <Heart size={14} />
@@ -186,7 +219,7 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
           <div className="flex gap-2 items-center">
             <div
               className="w-4 h-4 rounded-full bg-primary cursor-pointer shadow-sm"
-              onClick={() => handleColorChange("#DC2626")} 
+              onClick={() => handleColorChange("#DC2626")}
             ></div>
             <div
               className="w-4 h-4 rounded-full bg-[#FBBF24] cursor-pointer shadow-sm"
@@ -230,7 +263,10 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
                 <Plus />
               </Button>
             </div>
-            <Button className="bg-black text-white px-5 py-2 rounded-lg ">
+            <Button
+              className="bg-black text-white px-5 py-2 rounded-lg "
+              onClick={() => handleAddToCartClick()}
+            >
               <ShoppingCart /> Add
             </Button>
           </div>
@@ -279,7 +315,9 @@ const FlashSaleCard: React.FC<IFlashSaleCardProps> = ({
                   }
                 />
               ))}
-              <span className="text-gray-500 text-xs">({reviewsCount} reviews)</span>
+              <span className="text-gray-500 text-xs">
+                ({reviewsCount} reviews)
+              </span>
             </div>
           </div>
 
